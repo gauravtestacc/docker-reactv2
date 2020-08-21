@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true gauravlfc93/docker-reactv2 npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-south-1'
+  app: 'docker-reactv2'
+  env: 'DockerReactv2-env'
+  bucket_name: 'elasticbeanstalk-ap-south-1-935284059124'
+  bucket_path: 'docker-reactv2'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
